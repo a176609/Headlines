@@ -1,6 +1,7 @@
 package com.codedotorg;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -31,6 +32,8 @@ public class HonestHeadlines {
 
     /** The text box for the user to enter their response */
     private TextField inputField;
+    
+    private List<String> fakeKeywords = createWordsList();
 
     /**
      * Creates a new instance of HonestHeadlines with the given parameters.
@@ -112,8 +115,13 @@ public class HonestHeadlines {
      * @return "Fake!" if the headline contains any sensational words, "Real!" otherwise.
      */
     public String classifyHeadline(String input) {
+        for (String keyword : fakeKeywords) {
+            if (input.toLowerCase().contains(keyword)) {
+                return "Fake";
+            }
+        }
         
-        return "";
+        return "Real";
     }
 
     /**
